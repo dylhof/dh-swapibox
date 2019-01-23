@@ -1,0 +1,6 @@
+@mixin text($color, $size, $align) {
+  color: $color;
+  font-size: $size;
+  font-family: $swFont;
+  text-align: $align;
+}
