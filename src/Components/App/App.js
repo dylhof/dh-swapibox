@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../main.scss';
-import Crawl from '../Crawl/Crawl.js'
+import Crawl from '../Crawl/Crawl'
+import Buttons from '../Buttons/Buttons';
 
 class App extends Component {
   constructor() {
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Crawl crawl={crawl} />
+        <Buttons />
       </div>
     );
   }
