@@ -8,10 +8,16 @@ exports[`Buttons should match the snapshot 1`] = `
   >
     People
   </button>
-  <button>
+  <button
+    className="planets-btn"
+    onClick={[MockFunction]}
+  >
     Planets
   </button>
-  <button>
+  <button
+    className="vehicles-btn"
+    onClick={[MockFunction]}
+  >
     Vehicles
   </button>
   <button>

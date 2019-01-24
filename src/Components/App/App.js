@@ -23,12 +23,24 @@ class App extends Component {
     const url = 'https://swapi.co/api/people'
   }
 
+  fetchVehicles = () => {
+
+  }
+
+  fetchPlanets = () => {
+
+  }
+
   render() {
     const { crawl } = this.state;
     return (
       <div className='App'>
         <Crawl crawl={crawl} />
-        <Buttons />
+        <Buttons 
+          fetchPeople={this.fetchPeople}
+          fetchPlanets={this.fetchPlanets}
+          fetchVehicles={this.fetchVehicles}
+        />
       </div>
     );
   }
