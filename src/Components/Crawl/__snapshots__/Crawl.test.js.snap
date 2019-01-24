@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Crawl should match the snapshot 1`] = `
+<div>
+  <p
+    className="crawl"
+  >
+    It is a period of civil war.
+  </p>
+</div>
+`;
