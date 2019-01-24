@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../main.scss';
-import Crawl from '../Crawl/Crawl'
+import Crawl from '../Crawl/Crawl';
+import CardContainer from '../CardContainer/CardContainer';
 import Buttons from '../Buttons/Buttons';
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Crawl crawl={crawl} />
+        <CardContainer />
         <Buttons 
           fetchPeople={this.fetchPeople}
           fetchPlanets={this.fetchPlanets}
