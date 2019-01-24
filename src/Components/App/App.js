@@ -19,6 +19,10 @@ class App extends Component {
       .then(film => this.setState({ crawl: film.opening_crawl }))
   }
 
+  fetchPeople = () => {
+    const url = 'https://swapi.co/api/people'
+  }
+
   render() {
     const { crawl } = this.state;
     return (

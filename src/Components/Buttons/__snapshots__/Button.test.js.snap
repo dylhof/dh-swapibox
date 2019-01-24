@@ -2,7 +2,10 @@
 
 exports[`Buttons should match the snapshot 1`] = `
 <div>
-  <button>
+  <button
+    className="people-btn"
+    onClick={[MockFunction]}
+  >
     People
   </button>
   <button>
