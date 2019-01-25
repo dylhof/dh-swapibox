@@ -6,7 +6,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      crawl: ''
+      film: {},
+      currentView: '',
+      people: [],
+      planets: [],
+      vehicles: []
     }
   }
 
@@ -15,14 +19,49 @@ class App extends Component {
     const url = `https://swapi.co/api/films/${episode}`;
     fetch(url)
       .then(response => response.json())
-      .then(film => this.setState({ crawl: film.opening_crawl }))
+      .then(film => this.setState({ film: { crawl: film.opening_crawl, title: film.title, date: film.release_date }}))
+  }
+
+  fetchData = async (url) => {
+    let response = await fetch(url)
+    let data = await response.json()
+    return data
+  }
+  
+  makePeople = async () => {
+    const url = 'https://swapi.co/api/'
+    const peopleDataObject = await this.fetchData(url + 'people')
+    const peopleData = peopleDataObject.results
+    const people = await Promise.all(peopleData.map(async (person) => {
+      const homeworld = await this.fetchData(person.homeworld)
+      const species = await this.fetchData(...person.species)
+      const personData = { name: person.name, homeworld: homeworld.name, species: species.name, population: homeworld.population, category: 'person'}
+      return personData
+    }))
+   await this.setState({ people, currentView: 'people' })
   }
 
   render() {
-    const { crawl } = this.state;
+    const { currentView, film } = this.state;
+    let currentBody;
+
+    if(currentView) {
+      currentBody = 
+      <CardContainer cards={this.state[currentView]}
+      />
+    } else {
+      currentBody =
+      <Crawl {...film} />
+    };
+
     return (
       <div className='App'>
-        <Crawl crawl={crawl} />
+        {currentBody}
+        <Buttons 
+          makePeople={this.makePeople}
+          fetchData={this.fetchData}
+        />
+
       </div>
     );
   }
