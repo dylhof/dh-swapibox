@@ -32,7 +32,7 @@ class App extends Component {
       throw Error(`Error fetching, code: ${response.status}`)
     }
   }
-  
+
   makePeople = async () => {
     const peopleDataObject = await this.fetchData('https://swapi.co/api/people')
     const peopleData = peopleDataObject.results
