@@ -3,6 +3,9 @@ import '../../main.scss';
 import Crawl from '../Crawl/Crawl';
 import CardContainer from '../CardContainer/CardContainer';
 import Buttons from '../Buttons/Buttons';
+// import * as api from '../../utils/api';
+
+// then call functions from that as api.functionName
 
 class App extends Component {
   constructor() {
@@ -16,12 +19,12 @@ class App extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const episode = Math.ceil(Math.random() * 7)
     const url = `https://swapi.co/api/films/${episode}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(film => this.setState({ film: { crawl: film.opening_crawl, title: film.title, date: film.release_date }}))
+    const response = await fetch(url)
+    const film = await response.json();
+    await this.setState({ film: { crawl: film.opening_crawl, title: film.title, date: film.release_date }})
   }
 
   fetchData = async (url) => {
