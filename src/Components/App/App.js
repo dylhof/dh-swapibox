@@ -57,7 +57,6 @@ class App extends Component {
     await this.setState({ planets, currentView: 'planets'})
   }
 
-
   render() {
     const { currentView, film } = this.state;
     let currentBody;
