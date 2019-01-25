@@ -25,9 +25,12 @@ class App extends Component {
   }
 
   fetchData = async (url) => {
-    let response = await fetch(url)
-    let data = await response.json()
-    return data
+    const response = await fetch(url)
+    if (response.ok) {
+      return response.json()
+    } else {
+      throw Error(`Error fetching, code: ${response.status}`)
+    }
   }
   
   makePeople = async () => {

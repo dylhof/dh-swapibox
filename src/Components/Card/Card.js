@@ -29,11 +29,6 @@ const Card = (props) => {
       break;
   }
 
-//   Name
-// Terrain
-// Population
-// Climate
-// Residents This is an array of urls
   return (
     <div className='card'>{card}</div>
 
