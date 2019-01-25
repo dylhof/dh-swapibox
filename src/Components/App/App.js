@@ -31,8 +31,7 @@ class App extends Component {
   }
   
   makePeople = async () => {
-    const url = 'https://swapi.co/api/'
-    const peopleDataObject = await this.fetchData(url + 'people')
+    const peopleDataObject = await this.fetchData('https://swapi.co/api/people')
     const peopleData = peopleDataObject.results
     const people = await Promise.all(peopleData.map(async (person) => {
       const homeworld = await this.fetchData(person.homeworld)
@@ -43,9 +42,17 @@ class App extends Component {
    await this.setState({ people, currentView: 'people' })
   }
 
-  fetchPeople = () => {
-    const url = 'https://swapi.co/api/people'
+  makePlanets = async () => {
+    const planetsDataObject = await this.fetchData('https://swapi.co/api/planets')
+    const planetsData = planetsDataObject.results
+    console.log(planetsData)
+    // const planets = await Promise.all()
   }
+//   Name
+// Terrain
+// Population
+// Climate
+// Residents This is an array of urls
 
   render() {
     const { currentView, film } = this.state;
@@ -65,6 +72,7 @@ class App extends Component {
         {currentBody}
         <Buttons 
           makePeople={this.makePeople}
+          makePlanets={this.makePlanets}
           fetchData={this.fetchData}
         />
       </div>
