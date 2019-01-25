@@ -4,19 +4,17 @@ exports[`Buttons should match the snapshot 1`] = `
 <div>
   <button
     className="people-btn"
-    onClick={[MockFunction]}
   >
     People
   </button>
   <button
     className="planets-btn"
-    onClick={[MockFunction]}
   >
     Planets
   </button>
   <button
     className="vehicles-btn"
-    onClick={[MockFunction]}
+    onClick={[Function]}
   >
     Vehicles
   </button>
