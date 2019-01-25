@@ -5,7 +5,10 @@ const CardContainer = ({ cards }) => {
   return(
     <div>
       {cards.map(card => {
-        return <Card />
+        return <Card 
+          key={card.name}
+          {...card}
+        />
       })}
     </div>
   )
