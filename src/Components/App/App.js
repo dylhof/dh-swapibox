@@ -37,22 +37,26 @@ class App extends Component {
       const homeworld = await this.fetchData(person.homeworld)
       const species = await this.fetchData(...person.species)
       const personData = { name: person.name, homeworld: homeworld.name, species: species.name, population: homeworld.population, category: 'person'}
-      return personData
+      return personData;
     }))
-   await this.setState({ people, currentView: 'people' })
+   await this.setState({ people, currentView: 'people' });
   }
 
   makePlanets = async () => {
     const planetsDataObject = await this.fetchData('https://swapi.co/api/planets')
     const planetsData = planetsDataObject.results
-    console.log(planetsData)
-    // const planets = await Promise.all()
+    const planets = await Promise.all(planetsData.map(async (planet) => {
+      const residents = await Promise.all(planet.residents.map(async (residentURL) => {
+        const residentData = await this.fetchData(residentURL);
+        const resident = residentData.name
+        return resident
+      }))
+      const planetData = { name: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: residents, category: 'planet'}
+      return planetData;
+    }))
+    await this.setState({ planets, currentView: 'planets'})
   }
-//   Name
-// Terrain
-// Population
-// Climate
-// Residents This is an array of urls
+
 
   render() {
     const { currentView, film } = this.state;
