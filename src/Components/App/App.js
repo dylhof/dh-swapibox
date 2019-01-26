@@ -60,7 +60,16 @@ class App extends Component {
     await this.setState({ planets, currentView: 'planets'})
   }
   
-  
+  makeVehicles = async () => {
+    const vehiclesDataObject = await api.fetchData('https://swapi.co/api/vehicles')
+    const vehiclesData = vehiclesDataObject.results
+    console.log(vehiclesData)
+    const vehicles = vehiclesData.map((vehicle) => {
+      return { name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, category: 'vehicle'}
+    })
+    await this.setState({ vehicles, currentView: 'vehicles'})
+  }
+
 
   render() {
     const { currentView, film } = this.state;
