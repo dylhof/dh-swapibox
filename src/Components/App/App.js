@@ -65,7 +65,7 @@ class App extends Component {
     const vehiclesData = vehiclesDataObject.results
     console.log(vehiclesData)
     const vehicles = vehiclesData.map((vehicle) => {
-      return { name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, category: 'vehicle'}
+      return { name: vehicle.name, model: vehicle.model, class: vehicle.class, passengers: vehicle.passengers, category: 'vehicle'}
     })
     await this.setState({ vehicles, currentView: 'vehicles'})
   }

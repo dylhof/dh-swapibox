@@ -27,6 +27,15 @@ const Card = (props) => {
           </ul>
         </div>
       break;
+    case 'vehicle':
+      card = 
+        <div>
+          <h3>Name: {props.name}</h3>
+          <p>Model: {props.model}</p>
+          <p>Class: {props.vehicle_class}</p>
+          <p>Passengers: {props.passengers}</p>
+        </div>
+      break;
   }
 
   return (
