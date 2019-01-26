@@ -24,12 +24,12 @@ class App extends Component {
   getFilm = async () => {
     const episode = Math.ceil(Math.random() * 7)
     const url = `https://swapi.co/api/films/${episode}`;
-    const response = await fetch(url)
-    const film = await response.json();
-    await this.setState({ film: { 
-      crawl: film.opening_crawl, 
-      title: film.title, 
-      date: film.release_date }
+    const film = await api.fetchData(url)
+    await this.setState({ 
+      film: { 
+        crawl: film.opening_crawl, 
+        title: film.title, 
+        date: film.release_date }
     })
   }
 
@@ -59,6 +59,7 @@ class App extends Component {
     }))
     await this.setState({ planets, currentView: 'planets'})
   }
+  
   
 
   render() {
