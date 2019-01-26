@@ -6,7 +6,7 @@ const CardContainer = ({ cards }) => {
     <div>
       {cards.map(card => {
         return <Card 
-          key={card.name}
+          key={card.id}
           {...card}
         />
       })}
