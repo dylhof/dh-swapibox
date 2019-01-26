@@ -34,15 +34,24 @@ class App extends Component {
   }
 
   makePeople = async () => {
-    const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
-    const peopleData = peopleDataObject.results
-    const people = await Promise.all(peopleData.map(async (person) => {
-      const homeworld = await api.fetchData(person.homeworld)
-      const species = await api.fetchData(...person.species)
-      const personData = { name: person.name, homeworld: homeworld.name, species: species.name, population: homeworld.population, category: 'person'}
-      return personData;
-    }))
-   await this.setState({ people, currentView: 'people' });
+    if (!this.state.people.length) {
+      const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
+      const peopleData = peopleDataObject.results
+      const people = await Promise.all(peopleData.map(async (person) => {
+        const homeworld = await api.fetchData(person.homeworld)
+        const species = await api.fetchData(...person.species)
+        const personData = { 
+          name: person.name, 
+          homeworld: homeworld.name, 
+          species: species.name, 
+          population: homeworld.population, 
+          category: 'person'}
+        return personData;
+      }))
+     await this.setState({ people, currentView: 'people' });
+    } else {
+      this.setState({ currentView: 'people' })
+    }
   }
 
   makePlanets = async () => {
@@ -54,7 +63,13 @@ class App extends Component {
         const resident = residentData.name
         return resident
       }))
-      const planetData = { name: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: residents, category: 'planet'}
+      const planetData = { 
+        name: planet.name, 
+        terrain: planet.terrain, 
+        population: planet.population, 
+        climate: planet.climate, 
+        residents: residents, 
+        category: 'planet'}
       return planetData;
     }))
     await this.setState({ planets, currentView: 'planets'})
@@ -65,7 +80,12 @@ class App extends Component {
     const vehiclesData = vehiclesDataObject.results
     console.log(vehiclesData)
     const vehicles = vehiclesData.map((vehicle) => {
-      return { name: vehicle.name, model: vehicle.model, class: vehicle.class, passengers: vehicle.passengers, category: 'vehicle'}
+      return { 
+        name: vehicle.name, 
+        model: vehicle.model, 
+        class: vehicle.class, 
+        passengers: vehicle.passengers, 
+        category: 'vehicle'}
     })
     await this.setState({ vehicles, currentView: 'vehicles'})
   }
