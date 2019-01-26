@@ -14,7 +14,8 @@ class App extends Component {
       currentView: '',
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      errorMessage: ''
     }
   }
 
@@ -25,21 +26,27 @@ class App extends Component {
   getFilm = async () => {
     const episode = Math.ceil(Math.random() * 7)
     const url = `https://swapi.co/api/films/${episode}`;
-    const film = await api.fetchData(url)
-    await this.setState({ 
-      film: { 
-        crawl: film.opening_crawl, 
-        title: film.title, 
-        date: film.release_date }
-    })
+    try {const film = await api.fetchData(url)
+      await this.setState({ 
+        film: { 
+          crawl: film.opening_crawl, 
+          title: film.title, 
+          date: film.release_date }
+      })}
+    catch(error) {
+      this.setState({ errorMessage: error })
+    }
   }
 
   makePeople = async () => {
     if (!this.state.people.length) {
-      const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
-      const peopleData = peopleDataObject.results
-      const people = await help.peopleMap(peopleData);
-      await this.setState({ people, currentView: 'people' });
+      try {const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
+        const peopleData = peopleDataObject.results
+        const people = await help.peopleMap(peopleData);
+        await this.setState({ people, currentView: 'people' });
+      } catch(error) {
+        this.setState({ errorMessage: error })
+      }
     } else {
       this.setState({ currentView: 'people' })
     }
@@ -47,10 +54,13 @@ class App extends Component {
 
   makePlanets = async () => {
     if(!this.state.planets.length) {
-      const planetsDataObject = await api.fetchData('https://swapi.co/api/planets')
-      const planetsData = planetsDataObject.results
-      const planets = await help.planetMap(planetsData)
-      await this.setState({ planets, currentView: 'planets'})
+      try {const planetsDataObject = await api.fetchData('https://swapi.co/api/planets')
+        const planetsData = planetsDataObject.results
+        const planets = await help.planetMap(planetsData)
+        await this.setState({ planets, currentView: 'planets'})
+      } catch(error) {
+        this.setState({ errorMessage: error })
+      }
     } else {
       this.setState({ currentView: 'planets' })
     }
@@ -58,10 +68,13 @@ class App extends Component {
   
   makeVehicles = async () => {
     if(!this.state.vehicles.length) {
-      const vehiclesDataObject = await api.fetchData('https://swapi.co/api/vehicles')
-      const vehiclesData = vehiclesDataObject.results
-      const vehicles = help.vehiclesMap(vehiclesData)
-      await this.setState({ vehicles, currentView: 'vehicles'})
+      try {const vehiclesDataObject = await api.fetchData('https://swapi.co/api/vehicles')
+        const vehiclesData = vehiclesDataObject.results
+        const vehicles = help.vehiclesMap(vehiclesData)
+        await this.setState({ vehicles, currentView: 'vehicles'})
+      } catch(error) {
+        this.setState({ errorMessage: error })
+      }
     } else {
       this.setState({ currentView: 'vehicles' })
     }
