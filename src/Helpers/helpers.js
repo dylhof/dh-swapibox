@@ -1,4 +1,4 @@
-import * as api from '../../Helpers/api';
+import * as api from '../helpers/api';
 
 export const peopleMap = async (peopleData) => {
   const people = await Promise.all(peopleData.map(async (person) => {
