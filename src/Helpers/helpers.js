@@ -56,7 +56,8 @@ export const vehiclesMap = (vehiclesData) => {
       model: vehicle.model, 
       class: vehicle.class, 
       passengers: vehicle.passengers, 
-      category: 'vehicle'}
+      category: 'vehicle'
+    }
   })
   return vehicles
 }
