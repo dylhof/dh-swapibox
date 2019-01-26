@@ -49,58 +49,22 @@ class App extends Component {
     if(!this.state.planets.length) {
       const planetsDataObject = await api.fetchData('https://swapi.co/api/planets')
       const planetsData = planetsDataObject.results
-      const planets = await this.planetMap(planetsData)
+      const planets = await help.planetMap(planetsData)
       await this.setState({ planets, currentView: 'planets'})
     } else {
       this.setState({ currentView: 'planets' })
     }
-  }
-
-  // planetMap = async (planetsData) => {
-  //   const planets = await Promise.all(planetsData.map(async (planet) => {
-  //     const residents = await this.planetResidentMap(planet);
-  //     return {
-  //       name: planet.name, 
-  //       terrain: planet.terrain, 
-  //       population: planet.population, 
-  //       climate: planet.climate, 
-  //       residents: residents, 
-  //       category: 'planet'
-  //     }
-  //   }))
-  //   return planets
-  // }
-
-  planetResidentMap = async (planet) => {
-    const residents = await Promise.all(planet.residents.map(async (residentURL) => {
-      const residentData = await api.fetchData(residentURL);
-      const resident = residentData.name
-      return resident
-    }))
-    return residents
   }
   
   makeVehicles = async () => {
     if(!this.state.vehicles.length) {
       const vehiclesDataObject = await api.fetchData('https://swapi.co/api/vehicles')
       const vehiclesData = vehiclesDataObject.results
-      const vehicles = this.vehiclesMap(vehiclesData)
+      const vehicles = help.vehiclesMap(vehiclesData)
       await this.setState({ vehicles, currentView: 'vehicles'})
     } else {
       this.setState({ currentView: 'vehicles' })
     }
-  }
-
-  vehiclesMap = (vehiclesData) => {
-    const vehicles = vehiclesData.map((vehicle) => {
-      return { 
-        name: vehicle.name, 
-        model: vehicle.model, 
-        class: vehicle.class, 
-        passengers: vehicle.passengers, 
-        category: 'vehicle'}
-    })
-    return vehicles
   }
 
   render() {

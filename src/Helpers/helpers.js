@@ -27,7 +27,7 @@ const personSpeciesFetch = async (person) => {
 
 export const planetMap = async (planetsData) => {
   const planets = await Promise.all(planetsData.map(async (planet) => {
-    const residents = await this.planetResidentMap(planet);
+    const residents = await planetResidentMap(planet);
     return {
       name: planet.name, 
       terrain: planet.terrain, 
@@ -38,4 +38,25 @@ export const planetMap = async (planetsData) => {
     }
   }))
   return planets
+}
+
+const planetResidentMap = async (planet) => {
+  const residents = await Promise.all(planet.residents.map(async (residentURL) => {
+    const residentData = await api.fetchData(residentURL);
+    const resident = residentData.name
+    return resident
+  }))
+  return residents
+}
+
+export const vehiclesMap = (vehiclesData) => {
+  const vehicles = vehiclesData.map((vehicle) => {
+    return { 
+      name: vehicle.name, 
+      model: vehicle.model, 
+      class: vehicle.class, 
+      passengers: vehicle.passengers, 
+      category: 'vehicle'}
+  })
+  return vehicles
 }
