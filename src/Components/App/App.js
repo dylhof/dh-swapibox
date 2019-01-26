@@ -3,7 +3,8 @@ import '../../main.scss';
 import Crawl from '../Crawl/Crawl';
 import CardContainer from '../CardContainer/CardContainer';
 import Buttons from '../Buttons/Buttons';
-import * as api from '../../Helpers/api'
+import * as api from '../../helpers/api';
+import * as help from '../../Helpers/helpers';
 
 class App extends Component {
   constructor() {
@@ -37,37 +38,37 @@ class App extends Component {
     if (!this.state.people.length) {
       const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
       const peopleData = peopleDataObject.results
-      const people = await this.peopleMap(peopleData);
+      const people = await help.peopleMap(peopleData);
       await this.setState({ people, currentView: 'people' });
     } else {
       this.setState({ currentView: 'people' })
     }
   }
 
-  peopleMap = async (peopleData) => {
-    const people = await Promise.all(peopleData.map(async (person) => {
-      const homeworld = await this.personHomeworldFetch(person)
-      const species = await this.personSpeciesFetch(person);
-      return {
-        name: person.name,
-        homeworld: homeworld.name,
-        species: species.name,
-        population: homeworld.population,
-        category: 'person'
-      }
-    }))
-    return people
-  }
+  // peopleMap = async (peopleData) => {
+  //   const people = await Promise.all(peopleData.map(async (person) => {
+  //     const homeworld = await this.personHomeworldFetch(person)
+  //     const species = await this.personSpeciesFetch(person);
+  //     return {
+  //       name: person.name,
+  //       homeworld: homeworld.name,
+  //       species: species.name,
+  //       population: homeworld.population,
+  //       category: 'person'
+  //     }
+  //   }))
+  //   return people
+  // }
 
-  personHomeworldFetch = async (person) => {
-    const homeworld = await api.fetchData(person.homeworld);
-    return homeworld;
-  }
+  // personHomeworldFetch = async (person) => {
+  //   const homeworld = await api.fetchData(person.homeworld);
+  //   return homeworld;
+  // }
 
-  personSpeciesFetch = async (person) => {
-    const species = await api.fetchData(...person.species);
-    return species;
-  }
+  // personSpeciesFetch = async (person) => {
+  //   const species = await api.fetchData(...person.species);
+  //   return species;
+  // }
 
   makePlanets = async () => {
     if(!this.state.planets.length) {
