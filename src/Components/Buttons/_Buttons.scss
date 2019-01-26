@@ -1,0 +1,25 @@
+.button-div {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0px;
+  align-items: center;
+  // z-index: 2;
+  background-color: $background;
+}
+
+button {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 10px solid $swFontColor;
+  background-color: $background;
+  margin: 20px;
+  color: $swFontColor
+}
+
+// .people-btn {
+//   background-image: url(sw_people.jpg)
+// }
