@@ -16,6 +16,7 @@ describe('App', () => {
     let mockUrl;
     let wrapper;
     let mockFilm;
+    let mockMathCeil;
 
     beforeEach(() => {
       mockEpisode = 1;
@@ -24,6 +25,7 @@ describe('App', () => {
       wrapper = shallow(
         <App /> 
       );
+      Math.Ceil = jest.fn().mockImplementation(() => mockEpisode)
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         json: Promise.resolve(mockFilm),
         ok: true,
