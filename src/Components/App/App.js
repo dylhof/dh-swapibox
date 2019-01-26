@@ -3,9 +3,7 @@ import '../../main.scss';
 import Crawl from '../Crawl/Crawl';
 import CardContainer from '../CardContainer/CardContainer';
 import Buttons from '../Buttons/Buttons';
-// import * as api from '../../utils/api';
-
-// then call functions from that as api.functionName
+import * as api from '../../Helpers/api'
 
 class App extends Component {
   constructor() {
@@ -19,29 +17,28 @@ class App extends Component {
     }
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
+    this.getFilm()
+  }
+  
+  getFilm = async () => {
     const episode = Math.ceil(Math.random() * 7)
     const url = `https://swapi.co/api/films/${episode}`;
     const response = await fetch(url)
     const film = await response.json();
-    await this.setState({ film: { crawl: film.opening_crawl, title: film.title, date: film.release_date }})
-  }
-
-  fetchData = async (url) => {
-    const response = await fetch(url)
-    if (response.ok) {
-      return response.json()
-    } else {
-      throw Error(`Error fetching, code: ${response.status}`)
-    }
+    await this.setState({ film: { 
+      crawl: film.opening_crawl, 
+      title: film.title, 
+      date: film.release_date }
+    })
   }
 
   makePeople = async () => {
-    const peopleDataObject = await this.fetchData('https://swapi.co/api/people')
+    const peopleDataObject = await api.fetchData('https://swapi.co/api/people')
     const peopleData = peopleDataObject.results
     const people = await Promise.all(peopleData.map(async (person) => {
-      const homeworld = await this.fetchData(person.homeworld)
-      const species = await this.fetchData(...person.species)
+      const homeworld = await api.fetchData(person.homeworld)
+      const species = await api.fetchData(...person.species)
       const personData = { name: person.name, homeworld: homeworld.name, species: species.name, population: homeworld.population, category: 'person'}
       return personData;
     }))
@@ -49,11 +46,11 @@ class App extends Component {
   }
 
   makePlanets = async () => {
-    const planetsDataObject = await this.fetchData('https://swapi.co/api/planets')
+    const planetsDataObject = await api.fetchData('https://swapi.co/api/planets')
     const planetsData = planetsDataObject.results
     const planets = await Promise.all(planetsData.map(async (planet) => {
       const residents = await Promise.all(planet.residents.map(async (residentURL) => {
-        const residentData = await this.fetchData(residentURL);
+        const residentData = await api.fetchData(residentURL);
         const resident = residentData.name
         return resident
       }))
@@ -82,7 +79,7 @@ class App extends Component {
         <Buttons 
           makePeople={this.makePeople}
           makePlanets={this.makePlanets}
-          fetchData={this.fetchData}
+          makeVehicles={this.makeVehicles}
         />
       </div>
     );
