@@ -4,7 +4,7 @@ import Crawl from '../Crawl/Crawl';
 import CardContainer from '../CardContainer/CardContainer';
 import Buttons from '../Buttons/Buttons';
 import * as api from '../../helpers/api';
-import * as help from '../../Helpers/helpers';
+import * as help from '../../helpers/helpers';
 
 class App extends Component {
   constructor() {
