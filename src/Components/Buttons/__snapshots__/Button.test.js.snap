@@ -2,28 +2,50 @@
 
 exports[`Buttons should match the snapshot 1`] = `
 <div
-  className="button-div"
+  className="control-div"
 >
-  <button
-    className="people-btn"
-    onClick={[MockFunction]}
+  <div
+    className="button-div"
   >
-    People
-  </button>
-  <button
-    className="planets-btn"
-    onClick={[MockFunction]}
+    <button
+      className="people-btn"
+      onClick={[MockFunction]}
+    />
+    <p>
+      People
+    </p>
+  </div>
+  <div
+    className="button-div"
   >
-    Planets
-  </button>
-  <button
-    className="vehicles-btn"
-    onClick={[MockFunction]}
+    <button
+      className="planets-btn"
+      onClick={[MockFunction]}
+    />
+    <p>
+      Planets
+    </p>
+  </div>
+  <div
+    className="button-div"
   >
-    Vehicles
-  </button>
-  <button>
-    Favorites
-  </button>
+    <button
+      className="vehicles-btn"
+      onClick={[MockFunction]}
+    />
+    <p>
+      Vehicles
+    </p>
+  </div>
+  <div
+    className="button-div"
+  >
+    <button
+      className="favorites-btn"
+    />
+    <p>
+      Favorites
+    </p>
+  </div>
 </div>
 `;

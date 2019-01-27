@@ -1,17 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Crawl should match the snapshot 1`] = `
-<div>
-  <p
-    className="crawl"
+<section
+  className="crawl-section"
+>
+  <div
+    className="crawl-div"
   >
-    It is a period of civil war.
-  </p>
-  <p
-    className="crawl"
-  />
-  <p
-    className="crawl"
-  />
-</div>
+    <p
+      className="crawl-title"
+    />
+    <p
+      className="crawl"
+    />
+    <p
+      className="crawl"
+    >
+      It is a period of civil war.
+    </p>
+    <p
+      className="choose-category"
+    >
+      Choose A Category...
+    </p>
+  </div>
+</section>
 `;

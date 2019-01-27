@@ -23,7 +23,5 @@ describe('App', () => {
     await wrapper.instance().getFilm()
     expect(wrapper.state('film')).toEqual(expectedFilm)
   })
-  
-  
 
 })

@@ -43,9 +43,3 @@ describe('fetchData', () => {
     await expect(fetchData(mockURL)).rejects.toEqual(expectedError)
   })
 })
-
-// .mockImplementation(() => Promise.resolve({
-//   json: () => Promise.resolve({
-//     person: mockReturnData
-//   })
-// }))
