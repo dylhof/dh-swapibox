@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   render() {
-    const { currentView, film } = this.state;
+    const { currentView, film, errorMessage } = this.state;
     let currentBody;
 
     if(currentView) {
