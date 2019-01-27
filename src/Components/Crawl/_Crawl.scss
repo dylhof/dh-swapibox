@@ -1,3 +1,38 @@
-.crawl {
-  @include text($swFontColor, 30px, center)
+@keyframes crawl {
+	0% {
+    top: -100px;
+    transform: rotateX(20deg)  translateZ(0);
+  }
+	100% { 
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+.crawl-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 1200px;
+  perspective: 400px;
+  
+  .crawl-div{
+    position: relative;
+    top: 100px;
+    transform-origin: 50% 100%;
+    animation: crawl 100s linear;
+  }
+  .crawl-title,
+  .choose-category {
+    @include text($swFontColor, 75px, center);
+    margin: 10px;
+    text-shadow: 6px 6px black;
+  }
+  .crawl {
+    @include text($swFontColor, 50px, center);
+    text-shadow: 6px 6px black;
+  }
+
+
 }

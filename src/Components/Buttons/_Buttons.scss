@@ -6,8 +6,8 @@
   position: fixed;
   bottom: 0px;
   align-items: center;
-  // z-index: 2;
-  // background-color: $background;
+  z-index: 2;
+  background: linear-gradient(rgba(black, 0), rgba(black, 1));
   
   p {
     font-family: $swFont;
