@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import App from './App';
 import * as api from '../../helpers/api';
+import * as help from '../../helpers/helpers'
 
 describe('App', () => {
   let wrapper
@@ -24,4 +25,20 @@ describe('App', () => {
     expect(wrapper.state('film')).toEqual(expectedFilm)
   })
 
+  it('should set people state if there is no current people state', async () => { 
+    //setup
+    const mockPeopleData = [{name: 'luke'}, {name: 'leia'}]
+    help.peopleMap = jest.fn(() => mockPeopleData)
+    //execution
+    await wrapper.instance().makePeople()
+    //expectation
+    expect(wrapper.state('people')).toEqual(mockPeopleData)
+    expect(wrapper.state('currentView')).toEqual('people')
+  })
+
+  it('should set only current view state', () => {
+    const mockPeopleData = [{name: 'luke'}, {name: 'leia'}]
+    wrapper.setState({people: mockPeopleData})
+    
+  })
 })
