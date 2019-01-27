@@ -7,16 +7,17 @@ const Card = (props) => {
     case 'person':
       card =
         <div>
-          <h3 >Name: {props.name}</h3>
+          <h3 >Name: {props.name} <i class="fas fa-star"></i></h3>
           <p>Homeworld: {props.homeworld}</p>
           <p>Species: {props.species}</p>
           <p>Homeworld Population: {props.population}</p>
+          
         </div>
       break;
     case 'planet': 
       card = 
         <div>
-          <h3>Name: {props.name}</h3>
+          <h3>Name: {props.name} <i class="fas fa-star"></i></h3>
           <p>Terrain: {props.terrain}</p>
           <p>Climate: {props.climate}</p>
           <p>Residents:</p>
@@ -30,7 +31,7 @@ const Card = (props) => {
     case 'vehicle':
       card = 
         <div>
-          <h3>Name: {props.name}</h3>
+          <h3>Name: {props.name} <i class="fas fa-star"></i></h3>
           <p>Model: {props.model}</p>
           <p>Class: {props.vehicle_class}</p>
           <p>Passengers: {props.passengers}</p>
