@@ -1,25 +1,51 @@
-.button-div {
+.control-div {
   width: 100%;
-  height: 250px;
+  height: 220px;
   display: flex;
   justify-content: center;
   position: fixed;
   bottom: 0px;
   align-items: center;
   // z-index: 2;
-  background-color: $background;
+  // background-color: $background;
+  
+  p {
+    font-family: $swFont;
+    color: $swFontColor;
+    font-size: 30px;
+    margin: 10px 0px 20px 0px;
+  }
 }
 
+.button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // background-image: url
+}
 button {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   border: 10px solid $swFontColor;
   background-color: $background;
-  margin: 20px;
-  color: $swFontColor
+  margin: 0px 20px;
+  background-size: cover;
 }
 
 .people-btn {
-  background-image: url(./images/sw_people.jpg)
+  background-image: url(./images/sw_people.jpg);
+}
+
+.planets-btn {
+  background-image: url(./images/sw_planets.jpg)
+}
+
+.vehicles-btn {
+  background-image: url(./images/sw_vehicles.jpg)
+}
+
+.favorites-btn {
+  background-image: url(./images/sw_favorites.jpg)
 }
