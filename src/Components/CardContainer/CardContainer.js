@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 
 const CardContainer = ({ cards }) => {
   return(
-    <div>
+    <div className='card-container-div'>
       {cards.map(card => {
         return <Card 
           key={card.id}
