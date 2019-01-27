@@ -13,7 +13,7 @@ describe('Buttons', () => {
       <Buttons 
         makePeople={makePeopleMock}
         makePlanets={makePlanetsMock}
-        Vehicles={makeVehiclesMock}
+        makeVehicles={makeVehiclesMock}
       /> 
     )
   })
