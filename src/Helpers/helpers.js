@@ -1,4 +1,5 @@
 import * as api from '../helpers/api';
+import App from '../Components/App/App';
 
 export const peopleMap = async (peopleData) => {
   try {const people = await Promise.all(peopleData.map(async (person) => {
@@ -15,7 +16,7 @@ export const peopleMap = async (peopleData) => {
     }))
     return people
   } catch(error) {
-    this.setState({ errorMessage: error })
+    App.setState({ errorMessage: error })
   }
 }
 
@@ -23,7 +24,7 @@ const personHomeworldFetch = async (person) => {
   try {const homeworld = await api.fetchData(person.homeworld);
   return homeworld;
   } catch(error) {
-    this.setState({ errorMessage: error })
+    App.setState({ errorMessage: error })
   }
 }
 
@@ -31,7 +32,7 @@ const personSpeciesFetch = async (person) => {
   try {const species = await api.fetchData(...person.species);
   return species;
   } catch(error) {
-    this.setState({ errorMessage: error })
+    App.setState({ errorMessage: error })
   }
 }
 
@@ -50,7 +51,7 @@ export const planetMap = async (planetsData) => {
     }))
     return planets
   } catch(error) {
-    this.setState({ errorMessage: error})
+    App.setState({ errorMessage: error})
   }
 }
 
@@ -62,7 +63,7 @@ const planetResidentMap = async (planet) => {
     }))
     return residents
   } catch(error) {
-    this.setState({ errorMessage: error })
+    App.setState({ errorMessage: error })
   }
 }
 
