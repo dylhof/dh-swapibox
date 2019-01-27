@@ -20,7 +20,7 @@ export const peopleMap = async (peopleData) => {
   }
 }
 
-const personHomeworldFetch = async (person) => {
+export const personHomeworldFetch = async (person) => {
   try {const homeworld = await api.fetchData(person.homeworld);
   return homeworld;
   } catch(error) {
