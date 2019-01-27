@@ -33,7 +33,7 @@ const Card = (props) => {
         <div>
           <h3>Name: {props.name} <i class="fas fa-star"></i></h3>
           <p>Model: {props.model}</p>
-          <p>Class: {props.vehicle_class}</p>
+          <p>Class: {props.class}</p>
           <p>Passengers: {props.passengers}</p>
         </div>
       break;

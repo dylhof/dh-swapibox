@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should match the snapshot if category is person 1`] = `
+<div
+  className="card"
+/>
+`;
+
+exports[`Card should match the snapshot if category is planet 1`] = `
+<div
+  className="card"
+/>
+`;
+
+exports[`Card should match the snapshot if category is vehicle 1`] = `
+<div
+  className="card"
+/>
+`;
