@@ -10,7 +10,7 @@ export const peopleMap = async (peopleData) => {
         species: species.name,
         population: homeworld.population,
         category: 'person',
-        id: Date.now()
+        id: person.created
       }
     }))
     return people
@@ -45,7 +45,7 @@ export const planetMap = async (planetsData) => {
         climate: planet.climate, 
         residents: residents, 
         category: 'planet',
-        id: Date.now()
+        id: planet.created
       }
     }))
     return planets
@@ -74,7 +74,7 @@ export const vehiclesMap = (vehiclesData) => {
       class: vehicle.class, 
       passengers: vehicle.passengers, 
       category: 'vehicle',
-      id: Date.now()
+      id: vehicle.created
     }
   })
   return vehicles
