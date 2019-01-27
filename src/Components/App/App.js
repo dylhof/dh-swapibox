@@ -84,7 +84,9 @@ class App extends Component {
     const { currentView, film, errorMessage } = this.state;
     let currentBody;
 
-    if(currentView) {
+    if(errorMessage) {
+      currentBody = <p>{errorMessage}</p>
+    } else if(currentView) {
       currentBody = 
       <CardContainer cards={this.state[currentView]}
       />
