@@ -5,17 +5,15 @@ import * as api from './api';
 
 
 describe('personHomeworldFetch', () => {
-  const mockPerson = {
-    homeworld: 'homeworldURL',
-    species: 'speciesURL'
-  }
-  const expected = {
-    name: 'tatoine',
-    population: '20000'
-  }
+  
+  
   
   it('should fetch homeworld data', async () => {
     //setup
+    const expected = {
+      name: 'tatoine',
+      population: '20000'
+    }
     api.fetchData = jest.fn(() => expected)
     //execution
     const withHomeworld = await helpers.personHomeworldFetch(mockPerson)
@@ -25,6 +23,14 @@ describe('personHomeworldFetch', () => {
   
   it('should call fetch data with the correct params', () => {
     //setup
+    const mockPerson = {
+      homeworld: 'homeworldURL',
+      species: 'speciesURL'
+    }
+    const expected = {
+      name: 'tatoine',
+      population: '20000'
+    }
     api.fetchData = jest.fn(() => expected)
     //execution
     helpers.personHomeworldFetch(mockPerson);
@@ -34,7 +40,30 @@ describe('personHomeworldFetch', () => {
 })
 
 describe('peopleMap', () => {
-  const mockPeople = [{ name: 'luke', homeworld: 'mockHomeworldUrl1', species: ['mockSpeciesURL1'] }, { name: 'leia', homeworld: 'mockHomeworldUrl2', species: ['mockSpeciesURL2'] }]
+  const mockPeopleOrigData = [
+    { name: 'luke', 
+    homeworld: 'mockHomeworldUrl1', 
+    species: ['mockSpeciesURL1'], 
+    birthday: '19BBY',
+    created: '1' }, 
+    { name: 'leia', 
+    homeworld: 'mockHomeworldUrl2', 
+    species: ['mockSpeciesURL2'], 
+    birthday: '19BBY',
+    created: '2'}]
+  const mockPeopleResult = [
+    { name: 'luke', 
+    homeworld: 'tatoine', 
+    species: 'human', 
+    population: '20000', 
+    category: 'person',
+    id: '1' }, 
+    { name: 'leia', 
+    homeworld: 'alderan', 
+    species: 'human', 
+    population: '20000', 
+    category: 'person',
+    id: '2'}]
   const mockHomeworld1 = { name: 'tatooine', population: '200' }
   const mockHomeworld2 = { name: 'alderan', population: '300' }
 
@@ -48,6 +77,9 @@ describe('peopleMap', () => {
     expect(helpers.personHomeworldFetch).toHaveBeenCalledTimes(correctNumber)
   })
 
-
+  it.only('should clean up the data it is passed originally', async () => {
+    let people = await helpers.peopleMap(mockPeopleOrigData)
+    expect(people).toEqual(mockPeopleResult)
+  })
 
 })
